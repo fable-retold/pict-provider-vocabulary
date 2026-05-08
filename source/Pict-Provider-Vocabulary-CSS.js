@@ -166,7 +166,7 @@ module.exports = `
 .vocab-btn-primary {
 	background: var(--accent, #2a8a7a);
 	border-color: var(--accent, #2a8a7a);
-	color: #fff;
+	color: var(--theme-color-background-panel, #fff);
 }
 .vocab-btn-danger {
 	color: #D9534F;
@@ -175,7 +175,7 @@ module.exports = `
 .vocab-btn-danger:hover {
 	background: #D9534F;
 	border-color: #D9534F;
-	color: #fff;
+	color: var(--theme-color-background-panel, #fff);
 }
 
 .vocab-rendered {
