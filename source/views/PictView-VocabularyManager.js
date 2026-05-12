@@ -87,7 +87,7 @@ const defaultOptions =
   <div class="vocab-item-preview-body">{~D:Record.bodyEscaped~}</div>
   <div class="vocab-item-preview-actions">
     <button class="vocab-btn vocab-btn-primary" style="font-size:0.75em" onclick="event.stopPropagation();{~P~}.views['{~D:Record.ViewHash~}'].editTerm('{~D:Record.slug~}')">Edit in Editor</button>
-    <button class="vocab-btn vocab-btn-danger" style="font-size:0.75em" onclick="event.stopPropagation();{~P~}.views['{~D:Record.ViewHash~}'].deleteTerm('{~D:Record.slug~}')"><svg width="1em" height="1em" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg> Delete</button>
+    <button class="vocab-btn vocab-btn-danger" style="font-size:0.75em" onclick="event.stopPropagation();{~P~}.views['{~D:Record.ViewHash~}'].deleteTerm('{~D:Record.slug~}')">{~I:Trash~} Delete</button>
   </div>
 </div>`
 		},

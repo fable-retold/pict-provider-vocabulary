@@ -1,22 +1,24 @@
 /**
- * Vocabulary popover CSS — injected by the provider into the Pict
- * CSS cascade so any app that registers the provider gets the
- * popover styles for free.
+ * Vocabulary popover + manager CSS — injected by the provider into the
+ * Pict CSS cascade so any app that registers the provider gets the
+ * popover styles and the manager-view chrome for free.
  *
- * The .pict-vocab-term class is applied by pict-section-content's
- * _applyVocabularyLinks() method on each detected term. The
- * .vocab-popover class is the positioned tooltip that appears on
- * hover.
+ * Every color/background/border reads a `var(--theme-color-*)` token
+ * from pict-provider-theme — apps using a theme provider get a
+ * vocabulary UI that re-skins coherently with the rest of their chrome
+ * (warm beige under retold-content-system, GitHub grey under
+ * retold-manager, magenta/cyan under cyberpunk, etc.).  Each var()
+ * carries a sensible hex fallback so apps without a theme provider
+ * still get a readable panel.
  *
- * CSS custom properties (--bg-secondary, --border-color, --accent,
- * --text-primary, --text-secondary, --text-muted) are expected to
- * be defined by the host app's theme. Falls back to reasonable
- * dark-theme defaults if the properties are missing.
+ * Typography flows through `--theme-typography-family-mono` / `-body`
+ * for the same reason — themes that swap font families pick this up
+ * without further code.
  */
 module.exports = `
 /* ── Vocabulary term marker ─────────────────────────── */
 .pict-vocab-term {
-	border-bottom: 1px dotted var(--accent, #2a8a7a);
+	border-bottom: 1px dotted var(--theme-color-brand-primary, #2a8a7a);
 	cursor: help;
 }
 
@@ -26,28 +28,28 @@ module.exports = `
 	z-index: 10000;
 	max-width: 320px;
 	padding: 12px 16px;
-	background: var(--bg-secondary, #1a2a2a);
-	border: 1px solid var(--border-color, #2a3a3a);
+	background: var(--theme-color-background-panel,    #FFFFFF);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 6px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 	font-size: 0.85em;
 	line-height: 1.5;
-	color: var(--text-primary, #d0dada);
+	color: var(--theme-color-text-primary, #3D3229);
 }
 
 .vocab-popover-title {
 	font-weight: bold;
 	margin-bottom: 6px;
-	color: var(--accent, #2a8a7a);
+	color: var(--theme-color-brand-primary, #2a8a7a);
 }
 
 .vocab-popover-short {
 	margin-bottom: 8px;
-	color: var(--text-secondary, #8ca0a0);
+	color: var(--theme-color-text-secondary, #5E5549);
 }
 
 .vocab-popover-link {
-	color: var(--accent, #2a8a7a);
+	color: var(--theme-color-brand-primary, #2a8a7a);
 	text-decoration: none;
 	font-size: 0.85em;
 }
@@ -65,9 +67,9 @@ module.exports = `
 .vocab-sidebar {
 	width: 260px;
 	min-width: 200px;
-	border-right: 1px solid var(--border-color, #2a3a3a);
+	border-right: 1px solid var(--theme-color-border-default, #DDD6CA);
 	overflow-y: auto;
-	background: var(--bg-secondary, #1a2a2a);
+	background: var(--theme-color-background-secondary, #F5F0E8);
 	display: flex;
 	flex-direction: column;
 }
@@ -77,7 +79,8 @@ module.exports = `
 	align-items: center;
 	justify-content: space-between;
 	padding: 12px 14px;
-	border-bottom: 1px solid var(--border-color, #2a3a3a);
+	color: var(--theme-color-text-primary, #3D3229);
+	border-bottom: 1px solid var(--theme-color-border-default, #DDD6CA);
 }
 
 .vocab-content {
@@ -98,25 +101,25 @@ module.exports = `
 	padding: 6px 14px;
 	cursor: pointer;
 	font-size: 0.85em;
-	color: var(--text-secondary, #8ca0a0);
+	color: var(--theme-color-text-secondary, #5E5549);
 	border-left: 3px solid transparent;
 }
 .vocab-item:hover {
-	background: var(--bg-hover, #2a3a3a);
+	background: var(--theme-color-background-hover, #EAE3D8);
 }
 .vocab-item-active {
-	background: var(--bg-hover, #2a3a3a);
-	color: var(--text-primary, #d0dada);
-	border-left-color: var(--accent, #2a8a7a);
+	background: var(--theme-color-background-hover, #EAE3D8);
+	color: var(--theme-color-text-primary, #3D3229);
+	border-left-color: var(--theme-color-brand-primary, #2a8a7a);
 }
 
 .vocab-item-title {
 	font-weight: 600;
-	color: var(--text-primary, #d0dada);
+	color: var(--theme-color-text-primary, #3D3229);
 }
 .vocab-item-short {
 	font-size: 0.78em;
-	color: var(--text-muted, #6a8080);
+	color: var(--theme-color-text-muted, #8A7F72);
 	margin-top: 2px;
 	line-height: 1.3;
 }
@@ -124,15 +127,19 @@ module.exports = `
 .vocab-filter {
 	margin: 8px 10px;
 	padding: 6px 10px;
-	border: 1px solid var(--border-color, #2a3a3a);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 4px;
-	background: var(--bg-primary, #0e1818);
-	color: var(--text-primary, #d0dada);
+	background: var(--theme-color-background-panel, #FFFFFF);
+	color: var(--theme-color-text-primary, #3D3229);
 	font-size: 0.85em;
 }
+.vocab-filter::placeholder {
+	color: var(--theme-color-text-muted, #8A7F72);
+}
 .vocab-filter:focus {
-	border-color: var(--accent, #2a8a7a);
+	border-color: var(--theme-color-brand-primary, #2a8a7a);
 	outline: none;
+	box-shadow: 0 0 0 2px var(--theme-color-brand-primary-tint, rgba(42, 138, 122, 0.15));
 }
 
 .vocab-toolbar {
@@ -140,42 +147,48 @@ module.exports = `
 	align-items: center;
 	gap: 10px;
 	padding: 10px 16px;
-	border-bottom: 1px solid var(--border-color, #2a3a3a);
-	background: var(--bg-secondary, #1a2a2a);
+	border-bottom: 1px solid var(--theme-color-border-default, #DDD6CA);
+	background: var(--theme-color-background-secondary, #F5F0E8);
 }
 
 .vocab-slug {
 	flex: 1;
-	font-family: 'SF Mono', Menlo, Monaco, monospace;
+	font-family: var(--theme-typography-family-mono, 'SF Mono', Menlo, Monaco, monospace);
 	font-size: 0.82em;
-	color: var(--text-muted, #6a8080);
+	color: var(--theme-color-text-muted, #8A7F72);
 }
 
 .vocab-btn {
 	padding: 4px 12px;
-	border: 1px solid var(--border-color, #2a3a3a);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 4px;
-	background: var(--bg-primary, #0e1818);
-	color: var(--text-secondary, #8ca0a0);
+	background: var(--theme-color-background-panel, #FFFFFF);
+	color: var(--theme-color-text-secondary, #5E5549);
 	cursor: pointer;
 	font-size: 0.82em;
 }
 .vocab-btn:hover {
-	background: var(--bg-hover, #2a3a3a);
+	background: var(--theme-color-background-hover, #EAE3D8);
+	color: var(--theme-color-text-primary, #3D3229);
 }
 .vocab-btn-primary {
-	background: var(--accent, #2a8a7a);
-	border-color: var(--accent, #2a8a7a);
-	color: var(--theme-color-background-panel, #fff);
+	background: var(--theme-color-brand-primary, #2a8a7a);
+	border-color: var(--theme-color-brand-primary, #2a8a7a);
+	color: var(--theme-color-text-on-brand, var(--theme-color-background-panel, #FFFFFF));
+}
+.vocab-btn-primary:hover {
+	background: var(--theme-color-brand-primary-hover, var(--theme-color-brand-primary, #2a8a7a));
+	border-color: var(--theme-color-brand-primary-hover, var(--theme-color-brand-primary, #2a8a7a));
 }
 .vocab-btn-danger {
-	color: #D9534F;
-	border-color: #D9534F;
+	color:        var(--theme-color-status-error, #D9534F);
+	border-color: var(--theme-color-status-error, #D9534F);
+	background:   var(--theme-color-background-panel, #FFFFFF);
 }
 .vocab-btn-danger:hover {
-	background: #D9534F;
-	border-color: #D9534F;
-	color: var(--theme-color-background-panel, #fff);
+	background:   var(--theme-color-status-error, #D9534F);
+	border-color: var(--theme-color-status-error, #D9534F);
+	color:        var(--theme-color-text-on-status, var(--theme-color-background-panel, #FFFFFF));
 }
 
 .vocab-rendered {
@@ -183,6 +196,7 @@ module.exports = `
 	padding: 20px 24px;
 	overflow-y: auto;
 	line-height: 1.6;
+	color: var(--theme-color-text-primary, #3D3229);
 }
 
 .vocab-editor {
@@ -190,9 +204,9 @@ module.exports = `
 	width: 100%;
 	padding: 16px 20px;
 	border: none;
-	background: var(--bg-primary, #0e1818);
-	color: var(--text-primary, #d0dada);
-	font-family: 'SF Mono', Menlo, Monaco, monospace;
+	background: var(--theme-color-background-panel, #FFFFFF);
+	color: var(--theme-color-text-primary, #3D3229);
+	font-family: var(--theme-typography-family-mono, 'SF Mono', Menlo, Monaco, monospace);
 	font-size: 0.85em;
 	line-height: 1.5;
 	resize: none;
@@ -204,7 +218,7 @@ module.exports = `
 .vocab-empty {
 	padding: 40px 24px;
 	text-align: center;
-	color: var(--text-muted, #6a8080);
+	color: var(--theme-color-text-muted, #8A7F72);
 	font-size: 0.9em;
 }
 
@@ -212,19 +226,19 @@ module.exports = `
 .vocab-item-preview-short {
 	margin-top: 6px;
 	padding: 6px 0;
-	color: var(--text-secondary, #8ca0a0);
+	color: var(--theme-color-text-secondary, #5E5549);
 	font-size: 0.8em;
 	line-height: 1.4;
-	border-bottom: 1px solid var(--border-color, #2a3a3a);
+	border-bottom: 1px solid var(--theme-color-border-default, #DDD6CA);
 }
 .vocab-item-preview-body {
 	margin-top: 6px;
 	padding: 8px 10px;
-	background: var(--bg-primary, #0e1818);
+	background: var(--theme-color-background-tertiary, #F0ECE4);
 	border-radius: 4px;
-	color: var(--text-muted, #6a8080);
+	color: var(--theme-color-text-muted, #8A7F72);
 	white-space: pre-wrap;
-	font-family: 'SF Mono', Menlo, Monaco, monospace;
+	font-family: var(--theme-typography-family-mono, 'SF Mono', Menlo, Monaco, monospace);
 	font-size: 0.72em;
 	line-height: 1.4;
 	max-height: 200px;
@@ -252,10 +266,10 @@ module.exports = `
 	justify-content: center;
 }
 .vocab-create-panel {
-	background: var(--bg-primary, #0e1818);
-	border: 1px solid var(--border-color, #2a3a3a);
+	background: var(--theme-color-background-panel, #FFFFFF);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 10px;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 	width: 360px;
 	max-width: 90vw;
 	overflow: hidden;
@@ -266,7 +280,7 @@ module.exports = `
 .vocab-create-title {
 	font-size: 0.95rem;
 	font-weight: 600;
-	color: var(--text-primary, #d0dada);
+	color: var(--theme-color-text-primary, #3D3229);
 	margin-bottom: 12px;
 	text-align: center;
 }
@@ -275,16 +289,17 @@ module.exports = `
 	width: 100%;
 	box-sizing: border-box;
 	padding: 8px 12px;
-	border: 1px solid var(--border-color, #2a3a3a);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 5px;
-	background: var(--bg-secondary, #1a2a2a);
-	color: var(--text-primary, #d0dada);
+	background: var(--theme-color-background-secondary, #F5F0E8);
+	color: var(--theme-color-text-primary, #3D3229);
 	font-size: 0.88rem;
-	font-family: 'SF Mono', Menlo, Monaco, monospace;
+	font-family: var(--theme-typography-family-mono, 'SF Mono', Menlo, Monaco, monospace);
 }
 .vocab-create-input:focus {
-	border-color: var(--accent, #2a8a7a);
+	border-color: var(--theme-color-brand-primary, #2a8a7a);
 	outline: none;
+	box-shadow: 0 0 0 2px var(--theme-color-brand-primary-tint, rgba(42, 138, 122, 0.15));
 }
 .vocab-create-actions {
 	display: flex;
@@ -294,19 +309,19 @@ module.exports = `
 }
 .vocab-create-footer {
 	padding: 10px 22px;
-	border-top: 1px solid var(--border-color, #2a3a3a);
+	border-top: 1px solid var(--theme-color-border-default, #DDD6CA);
 	font-size: 0.72rem;
-	color: var(--text-muted, #6a8080);
+	color: var(--theme-color-text-muted, #8A7F72);
 	text-align: center;
 }
 .vocab-create-footer kbd {
 	display: inline-block;
 	padding: 1px 5px;
 	font-size: 0.68rem;
-	font-family: monospace;
-	background: var(--bg-secondary, #1a2a2a);
-	border: 1px solid var(--border-color, #2a3a3a);
+	font-family: var(--theme-typography-family-mono, 'SF Mono', Menlo, Monaco, monospace);
+	background: var(--theme-color-background-tertiary, #F0ECE4);
+	border: 1px solid var(--theme-color-border-default, #DDD6CA);
 	border-radius: 3px;
-	color: var(--text-secondary, #8ca0a0);
+	color: var(--theme-color-text-secondary, #5E5549);
 }
 `;
