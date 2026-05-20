@@ -174,7 +174,9 @@ module.exports = `
 .vocab-btn-primary {
 	background: var(--theme-color-brand-primary, #2a8a7a);
 	border-color: var(--theme-color-brand-primary, #2a8a7a);
-	color: var(--theme-color-text-on-brand, var(--theme-color-background-panel, #FFFFFF));
+	/* text-on-brand falls to a fixed light hex — never to background-panel,
+	   which inverts contrast in dark themes (dark text on brand bg). */
+	color: var(--theme-color-text-on-brand, #FFFFFF);
 }
 .vocab-btn-primary:hover {
 	background: var(--theme-color-brand-primary-hover, var(--theme-color-brand-primary, #2a8a7a));
@@ -188,7 +190,8 @@ module.exports = `
 .vocab-btn-danger:hover {
 	background:   var(--theme-color-status-error, #D9534F);
 	border-color: var(--theme-color-status-error, #D9534F);
-	color:        var(--theme-color-text-on-status, var(--theme-color-background-panel, #FFFFFF));
+	/* Same pattern: text on a colored bg falls to a fixed light hex. */
+	color:        var(--theme-color-text-on-status, #FFFFFF);
 }
 
 .vocab-rendered {
