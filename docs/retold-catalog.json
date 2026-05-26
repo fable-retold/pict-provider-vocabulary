@@ -1,0 +1,20 @@
+{
+	"Generated": "2026-05-26T18:21:44.547Z",
+	"Mode": "module",
+	"GitHubOrg": "fable-retold",
+	"DefaultBranch": "master",
+	"Module": {
+		"Name": "pict-provider-vocabulary",
+		"Repo": "pict-provider-vocabulary",
+		"Group": "",
+		"Branch": "master",
+		"HasDocs": true,
+		"HasCover": true,
+		"Sidebar": [],
+		"DocFiles": [
+			"_brand.json",
+			"_cover.md"
+		]
+	},
+	"Groups": []
+}
