@@ -4,6 +4,6 @@
 
 - Read the full documentation for usage, configuration, and reference
 
-[GitHub](https://github.com/stevenvelozo/pict-provider-vocabulary)
+[GitHub](https://github.com/fable-retold/pict-provider-vocabulary)
 [Get Started](#pict-provider-vocabulary)
 
