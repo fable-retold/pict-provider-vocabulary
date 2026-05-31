@@ -2,6 +2,6 @@
 	"Name": "pict-provider-vocabulary",
 	"Version": "1.0.1",
 	"Description": "Pict provider for vocabulary/glossary term management — holds a term index, provides a resolver callback for pict-section-content's parseMarkdown auto-linking, and wires popover hover handlers on rendered terms. Works with any term source: filesystem, database, or API.",
-	"GeneratedAt": "2026-05-26T21:12:56.613Z",
-	"GitCommit": "91c24b9"
+	"GeneratedAt": "2026-05-31T01:22:54.803Z",
+	"GitCommit": "e43e6b7"
 }
