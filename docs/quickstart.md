@@ -23,7 +23,7 @@ _Pict.addProvider('Vocabulary', libPictVocabulary.default_configuration, libPict
 let pictVocabulary = _Pict.providers.Vocabulary;
 ```
 
-The constructor injects the provider's CSS into the Pict CSS cascade automatically — there is nothing else to wire up for styling.
+The constructor injects the provider's CSS into the Pict CSS cascade automatically - there is nothing else to wire up for styling.
 
 ## 2. Load a term index
 
@@ -32,8 +32,8 @@ The index is a flat object keyed by lowercase slug. Each entry has a `title` (di
 ```javascript
 pictVocabulary.loadIndex(
 	{
-		vae:       { title: 'VAE',       short: 'Variational Autoencoder — compresses images into a latent space.' },
-		lora:      { title: 'LoRA',      short: 'Low-Rank Adaptation — a lightweight fine-tuning technique.' },
+		vae:       { title: 'VAE',       short: 'Variational Autoencoder - compresses images into a latent space.' },
+		lora:      { title: 'LoRA',      short: 'Low-Rank Adaptation - a lightweight fine-tuning technique.' },
 		diffusion: { title: 'Diffusion', short: 'A generative process that denoises random noise into an image.' }
 	});
 ```
@@ -47,7 +47,7 @@ pictVocabulary.loadFromURL('/api/vocabulary/index', (pError) =>
 {
 	if (pError)
 	{
-		// fetch failed — the index is left empty
+		// fetch failed - the index is left empty
 		return;
 	}
 	// terms are loaded; safe to parse markdown now
@@ -75,10 +75,10 @@ pict-section-content scans the rendered text for whole words that the resolver r
 <span class="pict-vocab-term"
       data-vocab-slug="vae"
       data-vocab-title="VAE"
-      data-vocab-short="Variational Autoencoder — compresses images into a latent space.">VAE</span>
+      data-vocab-short="Variational Autoencoder - compresses images into a latent space.">VAE</span>
 ```
 
-> If no terms are loaded, `getResolver()` returns `null`. Passing `null` is fine — pict-section-content simply skips vocabulary linking.
+> If no terms are loaded, `getResolver()` returns `null`. Passing `null` is fine - pict-section-content simply skips vocabulary linking.
 
 ## 4. Wire popovers
 
@@ -90,11 +90,11 @@ pictVocabulary.wirePopovers('#Article', { vocabularyRoute: '#/vocabulary' });
 
 On hover, the popover shows the term title, the short definition, and a **Read more** link pointing at `<vocabularyRoute>/<slug>` (default route `#/vocabulary`). The popover dismisses when the pointer leaves both the term and the popover.
 
-> `wirePopovers()` is idempotent per element — terms it has already wired are skipped, so it is safe to call again after re-rendering content. It is a no-op when `document` is undefined (server-side / tests).
+> `wirePopovers()` is idempotent per element - terms it has already wired are skipped, so it is safe to call again after re-rendering content. It is a no-op when `document` is undefined (server-side / tests).
 
 ## 5. (Optional) Mount the glossary manager view
 
-The package also exports a `VocabularyManagerView` — an A-Z browse, search, create, and edit UI that reads its terms from this provider. Register it as a Pict view:
+The package also exports a `VocabularyManagerView` - an A-Z browse, search, create, and edit UI that reads its terms from this provider. Register it as a Pict view:
 
 ```javascript
 _Pict.addView(

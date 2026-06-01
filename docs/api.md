@@ -60,7 +60,7 @@ Fetch a term index from a URL using the global `fetch`. The response is parsed a
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `pURL` | string | The endpoint to fetch. Expected response shape: `{ Index: { slug: { title, short } } }`. |
-| `fCallback` | function | *(optional)* `(pError)` — called with `null` on success, or the error on failure. |
+| `fCallback` | function | *(optional)* `(pError)` - called with `null` on success, or the error on failure. |
 
 **Returns:** `undefined`.
 
@@ -120,7 +120,7 @@ parseMarkdown(pMarkdown, pLinkResolver, pImageResolver, pVocabularyResolver)
 let tmpHTML = pictContent.parseMarkdown(tmpMarkdown, null, null, pictVocabulary.getResolver());
 ```
 
-pict-section-content matches whole words 3–31 characters long and wraps the **first occurrence** of each known term. See [pict-section-content](https://fable-retold.github.io/pict-section-content/) for the full matching rules.
+pict-section-content matches whole words 3-31 characters long and wraps the **first occurrence** of each known term. See [pict-section-content](https://fable-retold.github.io/pict-section-content/) for the full matching rules.
 
 ---
 
@@ -151,7 +151,7 @@ Return a single term by slug.
 |-----------|------|-------------|
 | `pSlug` | string | The term slug to look up. |
 
-**Returns:** `{ slug, title, short } | null` — `null` if the slug is not in the index. As with `getTerms()`, `title` falls back to the slug and `short` to `''`.
+**Returns:** `{ slug, title, short } | null` - `null` if the slug is not in the index. As with `getTerms()`, `title` falls back to the slug and `short` to `''`.
 
 ---
 
@@ -159,7 +159,7 @@ Return a single term by slug.
 
 Return the raw index object (for serialization or debugging).
 
-**Returns:** `object` — the live `{ slug: { title, short } }` index.
+**Returns:** `object` - the live `{ slug: { title, short } }` index.
 
 ---
 
@@ -183,7 +183,7 @@ Attach hover handlers to every `.pict-vocab-term` element inside a container. On
 Behavior notes:
 
 - No-op when `document` is undefined (server-side / tests), when the container is not found, or when it contains no `.pict-vocab-term` elements.
-- Each term is wired at most once — already-wired elements are skipped, so calling `wirePopovers()` again after a re-render is safe.
+- Each term is wired at most once - already-wired elements are skipped, so calling `wirePopovers()` again after a re-render is safe.
 - The popover reads its content from the element's `data-vocab-slug`, `data-vocab-title`, and `data-vocab-short` attributes (see below). `data-vocab-title` falls back to the slug and `data-vocab-short` to `''`.
 - Only one popover is shown at a time; opening a new one removes any existing `.vocab-popover`. The popover dismisses (with a short grace delay) once the pointer leaves both the term and the popover.
 
@@ -218,9 +218,9 @@ The popover injected on hover is appended to `document.body`:
 
 The provider registers a single CSS fragment into the Pict CSS cascade at construction (hash `Pict-Provider-Vocabulary`, priority `500`). It styles:
 
-- The term marker — `.pict-vocab-term` (a dotted underline + help cursor).
-- The hover popover — `.vocab-popover`, `.vocab-popover-title`, `.vocab-popover-short`, `.vocab-popover-link`.
-- The [Vocabulary Manager View](#vocabulary-manager-view) chrome — the `.vocab-*` layout, list, toolbar, editor, and create-modal classes.
+- The term marker - `.pict-vocab-term` (a dotted underline + help cursor).
+- The hover popover - `.vocab-popover`, `.vocab-popover-title`, `.vocab-popover-short`, `.vocab-popover-link`.
+- The [Vocabulary Manager View](#vocabulary-manager-view) chrome - the `.vocab-*` layout, list, toolbar, editor, and create-modal classes.
 
 Every color and font is a `var(--theme-color-*)` / `var(--theme-typography-*)` token with a hard-coded hex fallback, so the UI re-skins with [pict-provider-theme](https://fable-retold.github.io/pict-provider-theme/) but stays readable without a theme provider. The cascade is injected via the framework's `injectCSS()`; views that render lazily should call `this.pict.CSSMap.injectCSS()` in `onAfterRender()` (the manager view does this).
 
@@ -237,7 +237,7 @@ _Pict.addView(
 	libPictVocabulary.VocabularyManagerView);
 ```
 
-It reads its term list from the vocabulary provider (looked up by the `VocabularyProviderHash` option), so it shows whatever the host app loaded. The view is `AutoInitialize: false` / `AutoRender: false` — the host mounts and renders it explicitly.
+It reads its term list from the vocabulary provider (looked up by the `VocabularyProviderHash` option), so it shows whatever the host app loaded. The view is `AutoInitialize: false` / `AutoRender: false` - the host mounts and renders it explicitly.
 
 ### Options
 

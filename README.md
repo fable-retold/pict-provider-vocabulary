@@ -12,10 +12,10 @@ npm install pict-provider-vocabulary
 
 ## What it does
 
-- **Term index** — Loads and serves a `{ slug: { title, short } }` index. Load it from an object (`loadIndex`) or a URL (`loadFromURL`).
-- **Markdown auto-linking** — `getResolver()` returns the callback you pass as the 4th argument to pict-section-content's `parseMarkdown()`. Known terms in the rendered HTML are wrapped in `<span class="pict-vocab-term">` with the popover content baked into data attributes.
-- **Popovers** — `wirePopovers()` attaches hover handlers to those rendered `.pict-vocab-term` elements, showing a positioned card with the term title, short definition, and a "Read more" link.
-- **Glossary manager view** — Ships a `VocabularyManagerView` (an A-Z browse/search/create/edit UI) that host apps can register and mount.
+- **Term index** - Loads and serves a `{ slug: { title, short } }` index. Load it from an object (`loadIndex`) or a URL (`loadFromURL`).
+- **Markdown auto-linking** - `getResolver()` returns the callback you pass as the 4th argument to pict-section-content's `parseMarkdown()`. Known terms in the rendered HTML are wrapped in `<span class="pict-vocab-term">` with the popover content baked into data attributes.
+- **Popovers** - `wirePopovers()` attaches hover handlers to those rendered `.pict-vocab-term` elements, showing a positioned card with the term title, short definition, and a "Read more" link.
+- **Glossary manager view** - Ships a `VocabularyManagerView` (an A-Z browse/search/create/edit UI) that host apps can register and mount.
 
 ## Quick example
 
@@ -31,8 +31,8 @@ let pictVocabulary = _Pict.providers.Vocabulary;
 // 1. Load a term index
 pictVocabulary.loadIndex(
 	{
-		vae:  { title: 'VAE', short: 'Variational Autoencoder — compresses images into a latent space.' },
-		lora: { title: 'LoRA', short: 'Low-Rank Adaptation — a lightweight fine-tuning technique.' }
+		vae:  { title: 'VAE', short: 'Variational Autoencoder - compresses images into a latent space.' },
+		lora: { title: 'LoRA', short: 'Low-Rank Adaptation - a lightweight fine-tuning technique.' }
 	});
 
 // 2. Auto-link terms while parsing markdown (via pict-section-content)
@@ -54,9 +54,9 @@ Full documentation lives in [`docs/`](docs/README.md):
 
 ## Related Modules
 
-- [pict-provider](https://fable-retold.github.io/pict-provider/) — the base class this provider extends.
-- [pict-section-content](https://fable-retold.github.io/pict-section-content/) — supplies `parseMarkdown()`, which consumes the resolver this provider hands out.
-- [pict](https://fable-retold.github.io/pict/) — the MVC framework the provider plugs into.
+- [pict-provider](https://fable-retold.github.io/pict-provider/) - the base class this provider extends.
+- [pict-section-content](https://fable-retold.github.io/pict-section-content/) - supplies `parseMarkdown()`, which consumes the resolver this provider hands out.
+- [pict](https://fable-retold.github.io/pict/) - the MVC framework the provider plugs into.
 
 ## License
 

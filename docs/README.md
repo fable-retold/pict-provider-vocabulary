@@ -8,11 +8,11 @@ The provider extends [pict-provider](https://fable-retold.github.io/pict-provide
 
 Glossary-style auto-linking has three moving parts that usually get tangled together:
 
-1. **Where the terms live** — a JSON file, a database table, an API endpoint.
-2. **How markdown text gets linked** — scanning rendered HTML for known terms and wrapping them.
-3. **What happens on hover** — showing a definition popover.
+1. **Where the terms live** - a JSON file, a database table, an API endpoint.
+2. **How markdown text gets linked** - scanning rendered HTML for known terms and wrapping them.
+3. **What happens on hover** - showing a definition popover.
 
-This provider owns part 1 (the in-memory index and its loaders) and part 3 (the popover wiring), and supplies a small resolver callback that lets pict-section-content do part 2. Because the index is just a plain object, the term source stays the host application's concern — filesystem, database, or API all work the same way.
+This provider owns part 1 (the in-memory index and its loaders) and part 3 (the popover wiring), and supplies a small resolver callback that lets pict-section-content do part 2. Because the index is just a plain object, the term source stays the host application's concern - filesystem, database, or API all work the same way.
 
 ## The term index shape
 
@@ -25,7 +25,7 @@ Everything keys off a flat index object:
 }
 ```
 
-- The **key** is the term *slug* — the lowercase word that gets matched in markdown text.
+- The **key** is the term *slug* - the lowercase word that gets matched in markdown text.
 - `title` is the display label (shown in popovers and the glossary view).
 - `short` is the one-line definition shown in the popover.
 
@@ -38,7 +38,7 @@ host app                                    pict-section-content
   │ loadIndex({...})                              │
   ▼                                               │
 PictProviderVocabulary                            │
-  │ getResolver()  ──── resolver callback ───────▶│ parseMarkdown(md, null, null, resolver)
+  │ getResolver()  ──── resolver callback ───────-│ parseMarkdown(md, null, null, resolver)
   │                                               │   wraps known terms in
   │                                               ▼   <span class="pict-vocab-term" data-...>
   │ wirePopovers('#container') ◀──── rendered HTML in the DOM
@@ -62,11 +62,11 @@ The provider injects its CSS into the Pict CSS cascade at construction time (pri
 
 ## Documentation
 
-- [Quick Start](quickstart.md) — Register the provider, load terms, auto-link, and wire popovers.
-- [API Reference](api.md) — Every method, the resolver contract, and the rendered-element shape.
+- [Quick Start](quickstart.md) - Register the provider, load terms, auto-link, and wire popovers.
+- [API Reference](api.md) - Every method, the resolver contract, and the rendered-element shape.
 
 ## Related Modules
 
-- [pict-provider](https://fable-retold.github.io/pict-provider/) — the base class this provider extends.
-- [pict-section-content](https://fable-retold.github.io/pict-section-content/) — supplies `parseMarkdown()`, which consumes the resolver.
-- [pict](https://fable-retold.github.io/pict/) — the MVC framework the provider plugs into.
+- [pict-provider](https://fable-retold.github.io/pict-provider/) - the base class this provider extends.
+- [pict-section-content](https://fable-retold.github.io/pict-section-content/) - supplies `parseMarkdown()`, which consumes the resolver.
+- [pict](https://fable-retold.github.io/pict/) - the MVC framework the provider plugs into.
