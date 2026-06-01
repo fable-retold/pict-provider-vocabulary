@@ -1,6 +1,6 @@
 # pict-provider-vocabulary
 
-A Pict provider for vocabulary/glossary term management. It holds a term index in memory, hands out a resolver callback that [pict-section-content](https://fable-retold.github.io/pict-section-content/)'s `parseMarkdown()` uses to auto-link known terms, and wires popover hover handlers onto the rendered term elements.
+A Pict provider for vocabulary/glossary term management. It holds a term index in memory, hands out a resolver callback that [pict-section-content](https://github.com/fable-retold/pict-section-content)'s `parseMarkdown()` uses to auto-link known terms, and wires popover hover handlers onto the rendered term elements.
 
 The provider is source-agnostic: terms can come from a pre-built object, a URL, or any application-specific code (a Meadow database query, a filesystem scan, etc.). It only cares about the resulting index shape.
 
@@ -54,9 +54,9 @@ Full documentation lives in [`docs/`](docs/README.md):
 
 ## Related Modules
 
-- [pict-provider](https://fable-retold.github.io/pict-provider/) - the base class this provider extends.
-- [pict-section-content](https://fable-retold.github.io/pict-section-content/) - supplies `parseMarkdown()`, which consumes the resolver this provider hands out.
-- [pict](https://fable-retold.github.io/pict/) - the MVC framework the provider plugs into.
+- [pict-provider](https://github.com/fable-retold/pict-provider) - the base class this provider extends.
+- [pict-section-content](https://github.com/fable-retold/pict-section-content) - supplies `parseMarkdown()`, which consumes the resolver this provider hands out.
+- [pict](https://github.com/fable-retold/pict) - the MVC framework the provider plugs into.
 
 ## License
 
