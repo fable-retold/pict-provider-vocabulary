@@ -1,5 +1,7 @@
 # pict-provider-vocabulary
 
+> **[Read the pict-provider-vocabulary Documentation](https://fable-retold.github.io/pict-provider-vocabulary/)**
+
 A Pict provider for vocabulary/glossary term management. It holds a term index in memory, hands out a resolver callback that [pict-section-content](https://github.com/fable-retold/pict-section-content)'s `parseMarkdown()` uses to auto-link known terms, and wires popover hover handlers onto the rendered term elements.
 
 The provider is source-agnostic: terms can come from a pre-built object, a URL, or any application-specific code (a Meadow database query, a filesystem scan, etc.). It only cares about the resulting index shape.
