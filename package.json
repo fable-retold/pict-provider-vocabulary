@@ -3,6 +3,9 @@
 	"version": "1.0.1",
 	"description": "Pict provider for vocabulary/glossary term management — holds a term index, provides a resolver callback for pict-section-content's parseMarkdown auto-linking, and wires popover hover handlers on rendered terms. Works with any term source: filesystem, database, or API.",
 	"main": "source/Pict-Provider-Vocabulary.js",
+	"files": [
+		"source"
+	],
 	"scripts": {
 		"start": "node source/Pict-Provider-Vocabulary.js",
 		"test": "npx mocha -u tdd --exit --timeout 5000 test/Pict-Vocabulary_tests.js",
